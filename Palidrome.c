@@ -1,27 +1,39 @@
 #include <cs50.h>
+#include <ctype.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+void Plaidrome(string word);
 
-int main(void){
+int main(void)
+{
     printf("\nIs it a palidrome? \n");
 
     string IntialString = get_string("Enter a word : ");
-    int TotalLengthOfString = strlen(IntialString);
 
+    for (int j = 0; j < strlen(IntialString); j++)
+    {
+        IntialString[j] = tolower(IntialString[j]);
+    }
 
-    for (int i = 0; i < strlen(IntialString); i++){
-        if (IntialString[i] != IntialString[TotalLengthOfString - 1]){
+    Plaidrome(IntialString);
+}
+
+void Plaidrome(string word)
+{
+
+    int TotalLengthOfString = strlen(word);
+
+    for (int i = 0; i < strlen(word); i++)
+    {
+        if (word[i] != word[TotalLengthOfString - 1])
+        {
             printf("\nThis word is not a Palidrome\n");
-            return 1;
+            exit(0);
         }
 
         TotalLengthOfString--;
     }
     printf("This word is a Palidrome\n");
-
-    return 0;
-
-
 }
